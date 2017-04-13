@@ -1,6 +1,6 @@
 FROM centos:7
 MAINTAINER Kolla Project (https://launchpad.net/kolla)
-
+#build test
 
 
 RUN groupadd --force --gid 42401 ansible \
