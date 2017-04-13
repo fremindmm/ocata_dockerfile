@@ -1,0 +1,13 @@
+FROM kolla/centos-source-designate-base:4.0.0
+MAINTAINER Kolla Project (https://launchpad.net/kolla)
+
+
+
+
+
+
+
+
+
+
+USER designate
