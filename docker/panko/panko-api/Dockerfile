@@ -1,4 +1,4 @@
-FROM kolla/centos-source-panko-base:4.0.0
+FROM tor2/centos-source-panko-base:4.0.0
 MAINTAINER Kolla Project (https://launchpad.net/kolla)
 
 
