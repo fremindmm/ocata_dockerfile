@@ -1,6 +1,6 @@
 FROM centos:7
 MAINTAINER Kolla Project (https://launchpad.net/kolla)
-
+#
 
 RUN groupadd --force --gid 42401 ansible \
     && useradd -M --shell /usr/sbin/nologin --uid 42401 --gid 42401 ansible \
