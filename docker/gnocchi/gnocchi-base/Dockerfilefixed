@@ -24,6 +24,7 @@ RUN mkdir -p /var/www/cgi-bin/gnocchi \
 #ADD gnocchi-base-archive /gnocchi-base-source
 RUN mkdir -p /gnocchi-base-source && git clone https://github.com/openstack/gnocchi.git -b stable/3.1 /gnocchi-base-source/gnocchi-base
 
+
 RUN ln -s gnocchi-base-source/* gnocchi \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /gnocchi[keystone,mysql,file,ceph] \
     && mkdir -p /etc/gnocchi \
