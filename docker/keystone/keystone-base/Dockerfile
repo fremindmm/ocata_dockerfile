@@ -22,7 +22,8 @@ RUN sed -i -r 's,^(Listen 80),#\1,' /etc/httpd/conf/httpd.conf
     
 
 
-ADD keystone-base-archive /keystone-base-source
+#ADD keystone-base-archive /keystone-base-source
+RUN mkdir -p /keystone-base-source && git clone https://github.com/openstack/keystone.git -b stable/ocata /keystone-base-source/keystone-base 
 RUN ln -s keystone-base-source/* keystone \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /keystone \
     && mkdir -p /etc/keystone /var/www/cgi-bin/keystone \
