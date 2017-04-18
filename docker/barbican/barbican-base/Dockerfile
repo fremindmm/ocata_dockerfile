@@ -20,7 +20,8 @@ RUN usermod --append --home /var/lib/barbican --groups kolla barbican \
 
 RUN yum -y install uwsgi-plugin-python && yum clean all
 
-ADD barbican-base-archive /barbican-base-source
+#ADD barbican-base-archive /barbican-base-source
+RUN mkdir -p /barbican-base-source && git clone https://github.com/openstack/barbican.git -b stable/ocata /barbican-base-source/barbican-base 
 RUN ln -s barbican-base-source/* barbican \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt  pastedeploy uwsgi MySQL-python python-barbicanclient /barbican \
     && mkdir -p /etc/barbican \
