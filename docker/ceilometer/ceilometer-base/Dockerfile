@@ -15,7 +15,8 @@ RUN usermod --append --home /var/lib/ceilometer --groups kolla ceilometer \
 
 
 
-ADD ceilometer-base-archive /ceilometer-base-source
+#ADD ceilometer-base-archive /ceilometer-base-source
+RUN mkdir -p /ceilometer-base-source && git clone https://github.com/openstack/ceilometer.git -b stable/ocata /ceilometer-base-source/ceilometer-base 
 RUN ln -s ceilometer-base-source/* ceilometer \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /ceilometer[gnocchi,mongo,mysql] \
     && mkdir -p /etc/ceilometer \
