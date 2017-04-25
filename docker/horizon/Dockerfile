@@ -26,8 +26,9 @@ RUN sed -i -r 's,^(Listen 80),#\1,' /etc/httpd/conf/httpd.conf
 
     
 
-ADD horizon-archive /horizon-source
-ADD plugins-archive /
+RUN mkdir -p /horizon-source && git clone https://github.com/jeckxie/horizon.git -b stable/ocata /horizon-source/horizon 
+
+#ADD plugins-archive /
 RUN ln -s horizon-source/* horizon \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /horizon \
     && mkdir -p /etc/openstack-dashboard \
