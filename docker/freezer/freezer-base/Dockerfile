@@ -15,7 +15,8 @@ RUN usermod --append --home /var/lib/freezer --groups kolla freezer \
 
 
 
-ADD freezer-base-archive /freezer-base-source
+#ADD freezer-base-archive /freezer-base-source
+RUN mkdir -p /freezer-base-source && git clone https://github.com/Inspur-ocata/freezer.git -b stable/ocata /freezer-base-source/freezer
 RUN ln -s freezer-base-source/* freezer \
     && mkdir -p /etc/freezer \
     && chown -R freezer: /etc/freezer \

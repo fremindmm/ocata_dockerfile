@@ -27,7 +27,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
 
 
 #ADD openstack-base-archive /openstack-base-source
-RUN mkdir -p /openstack-base-source && git clone https://github.com/openstack/requirements.git -b stable/ocata
+RUN mkdir -p /openstack-base-source && git clone https://github.com/Inspur-ocata/requirements.git -b stable/ocata
 RUN ln -s openstack-base-source/* /requirements \
     && mkdir -p /var/lib/kolla \
     && pip --no-cache-dir install -U virtualenv \
