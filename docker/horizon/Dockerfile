@@ -38,6 +38,7 @@ RUN ln -s horizon-source/* horizon \
     && cp /horizon/manage.py /var/lib/kolla/venv/bin/manage.py \
     && if [ "$(ls /plugins)" ]; then \
            pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /plugins/*; \
+           pip install python-freezerclient==1.2.0; \
        fi \
     && (cd /var/lib/kolla/venv/lib/python2.7/site-packages/horizon && /var/lib/kolla/venv/bin/python /var/lib/kolla/venv/bin/manage.py compilemessages) \
     && (cd /var/lib/kolla/venv/lib/python2.7/site-packages/openstack_dashboard && /var/lib/kolla/venv/bin/python /var/lib/kolla/venv/bin/manage.py compilemessages) \
