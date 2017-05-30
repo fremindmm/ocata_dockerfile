@@ -24,8 +24,9 @@ RUN usermod --append --home /var/lib/neutron --groups kolla neutron \
 
 RUN yum -y install conntrack-tools dnsmasq dnsmasq-utils ipset keepalived openvswitch python-openvswitch uuid && yum clean all
 
-ADD neutron-base-archive /neutron-base-source
-ADD plugins-archive /
+#ADD neutron-base-archive /neutron-base-source
+#ADD plugins-archive /
+RUN mkdir -p /neutron-base-source && git clone https://github.com/Inspur-ocata/neutron.git -b stable/ocata /neutron-base-source/neutron-base 
 RUN ln -s neutron-base-source/* neutron \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /neutron \
     && mkdir -p /etc/neutron /usr/share/neutron \
@@ -36,7 +37,7 @@ RUN ln -s neutron-base-source/* neutron \
     && chown -R neutron: /etc/neutron /usr/share/neutron \
     && sed -i 's|^exec_dirs.*|exec_dirs=/var/lib/kolla/venv/bin,/sbin,/usr/sbin,/bin,/usr/bin,/usr/local/bin,/usr/local/sbin|g' /etc/neutron/rootwrap.conf \
     && if [ "$(ls /plugins)" ]; then \
-        pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /plugins/*; \
+        pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt; \
     fi
 
 
